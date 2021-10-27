@@ -5,26 +5,35 @@
 ## Built With
 
 ![Ruby](https://img.shields.io/badge/Ruby-20232A?style=for-the-badge&logo=ruby&logoColor=61DAFB)
+- Ruby v3.0.2
 
 ## Getting Started
 
 ### Installation
+
+- Make sure you have Ruby installed in your system. To install Ruby, you can read the [Documentation](https://www.ruby-lang.org/en/documentation/installation/).
+- Make sure you have Postgres installed in your system. To install Postgres, you can read the [Documentation](https://www.postgresql.org/download/).
 
 1. Clone the repo
 
    ```sh
    https://github.com/leonardodiasb/blog-app.git
    ```
+   
+2. Install ruby gems `bundle install`
+ 
+3. Create a database with `rails db:create`
+
+## Troubleshooting
+
+- If you face problems to install pg (1.2.3) while installing ruby gems, try installing `libpq-dev`. Then run `bundle install` again.
+
 
 ### Usage
 
-1. Install ruby gems  `bundle install`
+1. Run the web server `rails s`
 
-2. Install node `npm install`
-
-3. Run the web server `rails s`
-
-4. Visit http://localhost:3000/ in your browser!
+2. Visit http://localhost:3000/ in your browser!
 
 
 ## Acknowledgements
