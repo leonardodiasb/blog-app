@@ -18,8 +18,8 @@
     <p><%= post.title %></p>
     <p><%= post.text %></p>
     <div>
-      <p><%= post.comments_counter %></p>
-      <p><%= post.likes_counter %></p>
+      <p><%= post.comments_counter ? post.comments_counter : 0 %>,</p>
+      <p><%= post.likes_counter ? post.likes_counter : 0 %></p>
     </div>
   </div>
 <% end %>

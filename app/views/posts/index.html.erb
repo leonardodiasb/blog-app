@@ -1,2 +1,30 @@
 <h1>Here is a list of userx posts</h1>
 <p>Find me in app/views/posts/index.html.erb</p>
+<div>
+  <div>
+    <%= @user.photo %>
+  </div>
+  <div>
+    <%= @user.name %>
+    <%= @user.posts_counter %>
+  </div>
+</div>
+<div>
+  <p>Bio</p>
+  <p><%= @user.bio %></p>
+</div>
+<% @posts.each do |post| %>
+  <div>
+    <p><%= post.title %></p>
+    <p><%= post.text %></p>
+    <div>
+      <p><%= post.comments_counter ? post.comments_counter : 0 %>,</p>
+      <p><%= post.likes_counter ? post.likes_counter : 0 %></p>
+    </div>
+  </div>
+  <div>
+    <% post.return_recent_comments.each do |comment| %>
+      <p><%= comment.text %></p>
+    <% end %>
+  </div>
+<% end %>
