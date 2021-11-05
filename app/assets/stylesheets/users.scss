@@ -28,7 +28,7 @@
 }
 
 .user_profile_container {
-  border: 2px solid black;
+  border: 2px solid #000;
   width: 100%;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@
 //---->show<----//
 
 .user_bio_container {
-  border: 2px solid black;
+  border: 2px solid #000;
   margin: 40px 80px;
 }
 
@@ -59,10 +59,11 @@
 }
 
 .post_container {
-  border: 2px solid black;
-  margin: 40px 80px;
+  border: 2px solid #000;
+  margin: 40px 80px 10px 80px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
 
 .post_title, .post_text {
@@ -73,5 +74,18 @@
 .comments_likes_container {
   display: flex;
   align-self: end;
-  margin: 0 10px 10px 0;
+  margin-right: 10px;
 }
+
+.see_all_btn {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.see_all_btn > button {
+  font-size: 20px;
+  background-color: #fff;
+  padding: 4px;
+}
+
+
