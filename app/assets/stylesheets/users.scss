@@ -1,3 +1,77 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.users_index_main_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user_container {
+  display: flex;
+  height: 100px;
+  margin: 40px 80px;
+  gap: 40px;
+}
+
+.user_photo_container {
+  border: 2px solid black;
+  min-width: 100px;
+}
+
+.user_profile_container {
+  border: 2px solid black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_name {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.user_post_counter {
+  font-size: 16px;
+  margin: 20px;
+  align-self: end;
+}
+
+//---->show<----//
+
+.user_bio_container {
+  border: 2px solid black;
+  margin: 40px 80px;
+}
+
+.bio, .user_bio {
+  font-size: 20px;
+  margin: 10px;
+}
+
+.post_container {
+  border: 2px solid black;
+  margin: 40px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post_title, .post_text {
+  font-size: 18px;
+  margin: 10px 10px 0 10px;
+}
+
+.comments_likes_container {
+  display: flex;
+  align-self: end;
+  margin: 0 10px 10px 0;
+}

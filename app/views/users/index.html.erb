@@ -1,17 +1,17 @@
-<h1>Here is a list of users</h1>
-<p>Find me in app/views/user/index.html.erb</p>
+<div class="users_index_main_container" >
 <% if @users %>
   <% @users.each do |user| %>
-    <div>
-      <div>
-        <%= user.photo %>
+    <div class="user_container" >
+      <div class="user_photo_container" >
+        <img src='<%= user.photo %>' a='user profile picture'>
       </div>
-      <div>
-        <%= user.name %>
-        <%= user.posts_counter %>
+      <div class="user_profile_container" >
+        <p class="user_name" ><%= user.name %></p>
+        <p class="user_post_counter">Number of posts: <%= user.posts_counter %></p>
       </div>
     </div>
   <% end %>
 <% else %>
   <h2>No Users</h2>
 <% end %>
+</div>
