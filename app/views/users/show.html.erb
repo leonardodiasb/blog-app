@@ -1,2 +1,26 @@
 <h1>Here is a user</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+<div>
+  <div>
+    <%= @user.photo %>
+  </div>
+  <div>
+    <%= @user.name %>
+    <%= @user.posts_counter %>
+  </div>
+</div>
+<div>
+  <p>Bio</p>
+  <p><%= @user.bio %></p>
+</div>
+<% @posts.each do |post| %>
+  <div>
+    <p><%= post.title %></p>
+    <p><%= post.text %></p>
+    <div>
+      <p><%= post.comments_counter %></p>
+      <p><%= post.likes_counter %></p>
+    </div>
+  </div>
+<% end %>
+<button>See All Posts</button>

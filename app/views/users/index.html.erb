@@ -2,7 +2,15 @@
 <p>Find me in app/views/user/index.html.erb</p>
 <% if @users %>
   <% @users.each do |user| %>
-    Name: <%= user.name %><br>
+    <div>
+      <div>
+        <%= user.photo %>
+      </div>
+      <div>
+        <%= user.name %>
+        <%= user.posts_counter %>
+      </div>
+    </div>
   <% end %>
 <% else %>
   <h2>No Users</h2>

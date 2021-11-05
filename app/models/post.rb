@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 
   def update_posts_counter
     usr = User.find_by(id: author_id)
-    post_count = Post.where(author_id: id).count
+    post_count = Post.where(author_id: author_id).count
     usr.update(posts_counter: post_count)
   end
 
