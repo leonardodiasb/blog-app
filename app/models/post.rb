@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :likes
 
   def update_posts_counter
-    usr = User.find_by(id: users_id)
-    post_count = Post.where(users_id: id).count
+    usr = User.find_by(id: author_id)
+    post_count = Post.where(author_id: id).count
     usr.update(posts_counter: post_count)
   end
 

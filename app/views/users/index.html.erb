@@ -1,2 +1,9 @@
 <h1>Here is a list of users</h1>
 <p>Find me in app/views/user/index.html.erb</p>
+<% if @users %>
+  <% @users.each do |user| %>
+    Name: <%= user.name %><br>
+  <% end %>
+<% else %>
+  <h2>No Users</h2>
+<% end %>
