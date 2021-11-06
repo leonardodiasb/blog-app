@@ -9,8 +9,9 @@ class CommentsController < ApplicationController
     @comment.text = params[:comment][:text]
     @comment.author_id = ApplicationController.current_user.id
     @comment.post_id = params[:id]
+    @post = Post.find(params[:id])
     if @comment.save
-      @comment.update_comments_counter
+      Comment.update_comments_counter(@post)
       flash[:notice] = 'Comment created'
       redirect_to user_post_url(id: params[:id], user_id: params[:user_id])
     else

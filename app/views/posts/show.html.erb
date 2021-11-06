@@ -1,3 +1,15 @@
+<% flash.each do |type, msg| %>
+  <% if type == 'notice' %>
+    <div class="flash_notice">
+      <%= msg %>
+    </div>
+  <% end %>
+  <% if type == 'error' %>
+    <div class="flash_error">
+      <%= msg %>
+    </div>
+  <% end %>
+<% end %>
 <div class="user_container" >
   <div class="user_photo_container" >
     <img src='<%= @user.photo %>' a='user profile picture'>
@@ -26,7 +38,7 @@
 </div>
 <div class="comments_container">
   <% @comments.each do |comment| %>
-    <p><%= @users.find(comment.author_id).name %>:<%= comment.text %></p>
+    <p><%= comment.author.name %>:<%= comment.text %></p>
   <% end %>
   <div class='add_comment_box'>
     <%= link_to 'Add Comment', user_new_post_comment_path(@user), class: 'add_comment_btn' %>
