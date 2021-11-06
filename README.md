@@ -21,8 +21,14 @@
    ```
    
 2. Install ruby gems `bundle install`
+
+3. Install `yarn` using your OS package manager, or take a look at https://yarnpkg.com/en/docs/install
+
+4. Set it up `rails webpacker:install`
+
+5. Make sure all packages are up to date `yarn install --check-files`
  
-3. Create a database with `rails db:create`
+6. Create a database with `rails db:create` and `rails db:migrate`
 
 ## Troubleshooting
 
