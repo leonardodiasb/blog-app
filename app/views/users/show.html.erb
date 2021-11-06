@@ -11,9 +11,12 @@
   <p class="bio">Bio</p>
   <p class="user_bio"><%= @user.bio %></p>
 </div>
+<div class='add_post_box'>
+  <%= link_to 'Add Post', user_new_post_path(@user), class: 'add_post_btn' %>
+</div>
 <% @posts.each do |post| %>
   <div class="post_container">
-    <p class="post_title"><%= post.title %></p>
+    <%= link_to post.title, user_post_path(user_id: @user, id: post.id), class: 'post_title' %>
     <p class="post_text"><%= post.text %></p>
     <div class="comments_likes_container">
       <p>Comments: <%= post.comments_counter ? post.comments_counter : 0 %>, </p>
@@ -22,5 +25,5 @@
   </div>
 <% end %>
 <div class="see_all_btn">
-  <button>See All Posts</button>
+  <%= link_to "See All Posts", user_posts_path(user_id: @user)%>
 </div>

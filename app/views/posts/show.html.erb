@@ -20,12 +20,15 @@
     </div>
   </div>
   <p class="post_text"><%= @post.text %></p>
-</div>
-<div>
-  <%= button_to 'Like', user_create_post_like_path, method: :post %>
+  <div class="like_btn_box">
+    <%= button_to 'Like', user_create_post_like_path, method: :post, class: 'like_btn' %>
+  </div>
 </div>
 <div class="comments_container">
   <% @comments.each do |comment| %>
     <p><%= @users.find(comment.author_id).name %>:<%= comment.text %></p>
   <% end %>
+  <div class='add_comment_box'>
+    <%= link_to 'Add Comment', user_new_post_comment_path(@user), class: 'add_comment_btn' %>
+  </div>
 </div>

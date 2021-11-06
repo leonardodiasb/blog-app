@@ -5,10 +5,12 @@
       <div class="user_photo_container" >
         <img src='<%= user.photo %>' a='user profile picture'>
       </div>
-      <div class="user_profile_container" >
-        <p class="user_name" ><%= user.name %></p>
-        <p class="user_post_counter">Number of posts: <%= user.posts_counter %></p>
-      </div>
+      <%= link_to user, class: 'user_link_container' do %>
+        <div class="user_profile_container" >
+            <p class="user_name" ><%= user.name %></p>
+            <p class="user_post_counter">Number of posts: <%= user.posts_counter %></p>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% else %>
