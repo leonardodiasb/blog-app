@@ -21,6 +21,9 @@
   </div>
   <p class="post_text"><%= @post.text %></p>
 </div>
+<div>
+  <%= button_to 'Like', user_create_post_like_path, method: :post %>
+</div>
 <div class="comments_container">
   <% @comments.each do |comment| %>
     <p><%= @users.find(comment.author_id).name %>:<%= comment.text %></p>
