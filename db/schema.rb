@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2021_10_28_210619) do
     t.bigint "author_id", null: false
     t.bigint "posts_id", null: false
     t.text "text"
-    t.index ["posts_id"], name: "index_comments_on_posts_id"
     t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["posts_id"], name: "index_comments_on_posts_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2021_10_28_210619) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id", null: false
     t.bigint "posts_id", null: false
-    t.index ["posts_id"], name: "index_likes_on_posts_id"
     t.index ["author_id"], name: "index_likes_on_author_id"
+    t.index ["posts_id"], name: "index_likes_on_posts_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -52,12 +52,6 @@ ActiveRecord::Schema.define(version: 2021_10_28_210619) do
     t.string "photo"
     t.text "bio"
     t.integer "posts_counter"
-  end
-
-  create_table "widgets", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "comments", "posts", column: "posts_id"

@@ -1,2 +1,28 @@
-<h1>Here is a post</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="user_container" >
+  <div class="user_photo_container" >
+    <img src='<%= @user.photo %>' a='user profile picture'>
+  </div>
+  <div class="user_profile_container" >
+    <p class="user_name" ><%= @user.name %></p>
+    <p class="user_post_counter">Number of posts: <%= @user.posts_counter %></p>
+  </div>
+</div>
+<div class="user_bio_container">
+  <p class="bio">Bio</p>
+  <p class="user_bio"><%= @user.bio %></p>
+</div>
+<div class="post_container">
+  <div class="post_title_container">
+    <p class="post_title"><%= @post.title %></p>
+    <div class="comments_likes_container">
+      <p>Comments: <%= @post.comments_counter ? @post.comments_counter : 0 %>, </p>
+      <p> Likes: <%= @post.likes_counter ? @post.likes_counter : 0 %></p>
+    </div>
+  </div>
+  <p class="post_text"><%= @post.text %></p>
+</div>
+<div class="comments_container">
+  <% @comments.each do |comment| %>
+    <p><%= @users.find(comment.author_id).name %>:<%= comment.text %></p>
+  <% end %>
+</div>
