@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new
+    @current_user = ApplicationController.current_user
+    @comment = @current_user.comments.new
     @comment.text = params[:comment][:text]
     @comment.author_id = ApplicationController.current_user.id
     @comment.post_id = params[:id]

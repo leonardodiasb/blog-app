@@ -11,13 +11,14 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.return_recent_comments.each
   end
-
+  
   def new
     @post = Post.new
   end
-
+  
   def create
-    @post = Post.new
+    @current_user = ApplicationController.current_user
+    @post = @current_user.posts.new()
     @post.title = params[:post][:title]
     @post.text = params[:post][:text]
     @post.author_id = params[:user_id]
