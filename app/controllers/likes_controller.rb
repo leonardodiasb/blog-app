@@ -5,7 +5,7 @@ class LikesController < ApplicationController
     @like.post_id = params[:id]
     @post = Post.find(params[:id])
     if @like.save
-      @like.update_likes_counter
+      Like.update_likes_counter(@post)
       flash[:notice] = 'Liked'
       redirect_to user_post_url(id: params[:id], user_id: params[:user_id])
     else

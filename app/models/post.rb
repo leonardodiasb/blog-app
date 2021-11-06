@@ -6,10 +6,9 @@ class Post < ApplicationRecord
   validates :comments_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  def update_posts_counter
-    usr = User.find_by(id: author_id)
-    post_count = Post.where(author_id: author_id).count
-    usr.update(posts_counter: post_count)
+  def self.update_posts_counter(user)
+    post_count = Post.where(author_id: user.id).count
+    user.update(posts_counter: post_count)
   end
 
   def return_recent_comments

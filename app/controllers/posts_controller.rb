@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post.comments_counter = 0
     @post.likes_counter = 0
     if @post.save
-      @post.update_posts_counter
+      Post.update_posts_counter(User.find(params[:user_id]))
       flash[:notice] = 'Post created'
       redirect_to user_posts_url(@post.author_id)
     else
