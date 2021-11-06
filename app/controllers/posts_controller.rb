@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @users = User.all
     @user = User.find(params[:user_id])
-    @posts = @user.return_recent_posts.includes(:author)
+    @posts = User.return_recent_posts(@user).includes(:author)
   end
 
   def show

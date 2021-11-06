@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'return_recent_posts method should return 1 post' do
-    posts = @user.return_recent_posts
+    posts = User.return_recent_posts(@user)
     expect(posts.length).to be(1)
   end
 end
