@@ -17,19 +17,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    @current_user = ApplicationController.current_user
-    @post = @current_user.posts.new
-    @post.title = params[:post][:title]
-    @post.text = params[:post][:text]
-    @post.author_id = params[:user_id]
-    @post.comments_counter = 0
-    @post.likes_counter = 0
-    if @post.save
-      Post.update_posts_counter(User.find(params[:user_id]))
-      flash[:notice] = 'Post created'
-      redirect_to user_posts_url(@post.author_id)
+    if user_signed_in?
+      @current_user = current_user
+      @post = @current_user.posts.new
+      @post.title = params[:post][:title]
+      @post.text = params[:post][:text]
+      @post.author_id = params[:user_id]
+      @post.comments_counter = 0
+      @post.likes_counter = 0
+      if @post.save
+        Post.update_posts_counter(User.find(params[:user_id]))
+        flash[:notice] = 'Post created'
+        redirect_to user_posts_url(@post.author_id)
+      else
+        flash[:error] = 'Post not created'
+        render :new
+      end
     else
-      flash[:error] = 'Post not created'
+      flash[:error] = 'Please sign up to make a post.'
       render :new
     end
   end

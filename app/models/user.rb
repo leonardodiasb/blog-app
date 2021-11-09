@@ -1,6 +1,7 @@
 class User < ApplicationRecord
+  # , :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable
   has_many :posts, foreign_key: 'author_id', class_name: 'Post'
   has_many :comments, foreign_key: 'author_id', class_name: 'Comment'
   has_many :likes, foreign_key: 'author_id', class_name: 'Like'
