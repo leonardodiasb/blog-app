@@ -1,3 +1,8 @@
+<div class="session_box">
+  <%= link_to 'Register', new_user_registration_path %>
+  <%= link_to 'Sign in', new_user_session_path %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</div>
 <div class="users_index_main_container" >
 <% if @users %>
   <% @users.each do |user| %>
@@ -14,6 +19,7 @@
     </div>
   <% end %>
 <% else %>
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <h2>No Users</h2>
 <% end %>
 </div>

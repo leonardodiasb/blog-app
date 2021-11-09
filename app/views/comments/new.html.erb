@@ -10,7 +10,7 @@
     </div>
   <% end %>
 <% end %>
-<%= form_with model: @comment, url: user_create_post_comment_path, method: :post, class: 'add-comment-form' do |form| %>
+<%= form_with model: @comment, url: user_create_post_comment_path, method: :post, class: 'comment_form' do |form| %>
   <h2>Add Comment: </h2>
   <div>
     <%= form.label :text, "Comment:" %><br>
