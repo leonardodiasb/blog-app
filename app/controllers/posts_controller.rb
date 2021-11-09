@@ -38,4 +38,13 @@ class PostsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    Post.find_by(id:params[:id]).destroy!
+    Post.update_posts_counter(User.find(params[:user_id]))
+    respond_to do |format|
+      format.html { redirect_to user_url(params[:user_id]), notice: 'post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 end
