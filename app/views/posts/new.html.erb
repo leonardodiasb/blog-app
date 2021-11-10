@@ -10,7 +10,7 @@
     </div>
   <% end %>
 <% end %>
-<%= form_with model: @post, url: user_create_post_path, method: :post, class: 'post_form' do |form| %>
+<%= form_with model: @post, url: user_posts_path, method: :post, class: 'post_form' do |form| %>
   <h2>Add Post: </h2>
   <div>
     <%= form.label :title %><br>

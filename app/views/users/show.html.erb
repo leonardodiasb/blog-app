@@ -1,3 +1,9 @@
+<div class="session_box">
+  <p><%= @current_user.role %></p>
+  <%= link_to 'Register', new_user_registration_path %>
+  <%= link_to 'Sign in', new_user_session_path %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+</div>
 <div class="user_container" >
   <div class="user_photo_container" >
     <img src='<%= @user.photo %>' a='user profile picture'>

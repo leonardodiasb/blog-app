@@ -14,7 +14,18 @@
  *= require_self
  */
 
- .devise-container {
+ .session_box {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  border-bottom: 1px solid black;
+ }
+
+ .session_box > a {
+   color: #000;
+ }
+ 
+ .devise-container, .post_form, .comment_form {
   border: 3px solid #000;
   text-align: center;
   margin: 45px auto 45px auto;

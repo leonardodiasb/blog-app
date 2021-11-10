@@ -10,6 +10,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :role %><br />
+      <%= f.check_box :role, {:class => "myclass", :style => "mystyle"}, "admin", "user" %>
+    </div>
+
+    <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
