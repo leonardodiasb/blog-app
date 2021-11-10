@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   def index
+    @current_user = current_user
     @users = User.all
     @user = User.find(params[:user_id])
     @posts = User.return_recent_posts(@user).includes(:author)
   end
 
   def show
+    @current_user = current_user
     @users = User.all
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
@@ -40,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find_by(id:params[:id]).destroy!
+    Post.find_by(id: params[:id]).destroy!
     Post.update_posts_counter(User.find(params[:user_id]))
     respond_to do |format|
       format.html { redirect_to user_url(params[:user_id]), notice: 'post was successfully destroyed.' }

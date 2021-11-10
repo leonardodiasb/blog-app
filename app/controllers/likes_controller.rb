@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
   def create
-      if user_signed_in?
+    if user_signed_in?
       @current_user = current_user
       @like = @current_user.likes.new
       @like.author_id = @current_user.id

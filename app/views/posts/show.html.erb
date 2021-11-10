@@ -11,6 +11,7 @@
   <% end %>
 <% end %>
 <div class="session_box">
+  <p><%= @current_user.role %></p>
   <%= link_to 'Register', new_user_registration_path %>
   <%= link_to 'Sign in', new_user_session_path %>
   <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
@@ -40,12 +41,16 @@
   <div class="like_btn_box">
     <%= button_to 'Like', user_create_post_like_path, method: :post, class: 'like_btn' %>
   </div>
-  <%= link_to 'Delete', user_destroy_post_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if can? :destroy, @post %>
+    <%= link_to 'Delete', user_destroy_post_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </div>
 <div class="comments_container">
   <% @comments.each do |comment| %>
     <p><%= comment.author.name %>:<%= comment.text %></p>
-    <%= link_to 'Delete', user_destroy_comment_path(user_id: @user.id, post_id: @post.id, id: comment.id), data: { method: :delete } %>
+    <% if can? :destroy, comment %>
+      <%= link_to 'Delete', user_destroy_comment_path(user_id: @user.id, post_id: @post.id, id: comment.id), data: { method: :delete } %>
+    <% end %>
   <% end %>
   <div class='add_comment_box'>
     <%= link_to 'Add Comment', user_new_post_comment_path(user_id: @user.id, post_id: @post.id), class: 'add_comment_btn' %>

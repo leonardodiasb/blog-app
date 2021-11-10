@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController  
+class CommentsController < ApplicationController
   def new
     @comment = Comment.new
   end
@@ -27,11 +27,13 @@ class CommentsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    Comment.find_by(id:params[:id]).destroy!
+    Comment.find_by(id: params[:id]).destroy!
     Comment.update_comments_counter(@post)
     respond_to do |format|
-      # format.html { redirect_to user_post_url(id: params[:id], user_id: params[:user_id]), notice: 'page was successfully destroyed.' }
-      format.html { redirect_to user_post_url(user_id: params[:user_id], id: params[:post_id]), notice: 'comment was successfully destroyed.' }
+      format.html do
+        redirect_to user_post_url(user_id: params[:user_id], id: params[:post_id]),
+                    notice: 'comment was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
