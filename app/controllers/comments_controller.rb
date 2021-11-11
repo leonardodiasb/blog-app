@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
         render json: {status: 'SUCCESS', message: 'Comment created', data: comment},status: :created
         Comment.update_comments_counter(@post)
       else
-        ender json: {status: 'ERROR', message: 'Comment not created', data: comment.errors},status: :unprocessable_entity
+        render json: {status: 'ERROR', message: 'Comment not created', data: comment.errors},status: :unprocessable_entity
       end
     else
       if user_signed_in?
