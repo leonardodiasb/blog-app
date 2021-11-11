@@ -1,13 +1,17 @@
 class PostsController < ApplicationController
+  def json_response(object, status = :ok)
+    render json: object, status: status
+  end
+
   def index
     @current_user = current_user
     @users = User.all
     @user = User.find(params[:user_id])
     @posts = User.return_recent_posts(@user).includes(:author)
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   # format.xml  { render :xml => @users }
-    #   format.json { render :json => @posts }
+
+    if params[:api].present?
+      @api_posts = Post.where("author_id = #{params[:user_id]}")
+      json_response(@api_posts)
     end
   end
 
@@ -17,12 +21,6 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @comments = @post.return_recent_comments.includes(:author)
-    # @all_comments = Comment.where(post_id: params[:id])
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   # format.xml  { render :xml => @users }
-    #   format.json { render :json => @all_comments }
-    end
   end
 
   def new
