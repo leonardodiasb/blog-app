@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @posts = User.return_recent_posts(@user).includes(:author)
 
-    if params[:api].present?
+    if params[:api].present? and params[:api] == 'api'
       @api_posts = Post.where("author_id = #{params[:user_id]}")
       json_response(@api_posts)
     end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.return_recent_comments.includes(:author)
 
-    if params[:api].present?
+    if params[:api].present? and params[:api] == 'api'
       @api_comments_posts = Comment.where("post_id = #{params[:id]}")
       json_response(@api_comments_posts)
     end
