@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   # before_action :authenticate_user!
   # http_basic_authenticate_with name:"admin@admin.com", password: "adminadmin"
 
-  # before_action :authentication
+  before_action :authentication, only: [:create]
 
   def new
     @comment = Comment.new
