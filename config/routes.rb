@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   post "/users/:user_id/posts/:id/likes", to: "likes#create", as: "user_create_post_like"
   get "/users", to: "users#index", as: "users"
   get "/users/:id", to: "users#show", as: "user"
-  get "/api/users/posts", to: "apis#posts", as: "api_show"
-  get "/api/users/:id/comments", to: "apis#comments", as: "api_show_comments"
+  get "/:api/users/:user_id/posts/", to: "posts#index", as: "api_list_posts"
+  get "/:api/users/:user_id/posts/:id/", to: "posts#show", as: "api_list_comments"
   root to: "users#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
