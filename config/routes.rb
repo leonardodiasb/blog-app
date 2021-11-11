@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/:api/users/:user_id/posts/:id/", to: "posts#show", as: "api_list_comments"
   post "/:api/users/:user_id/posts/:id/comments", to: "comments#create", as: "api_create_comment"
   post "/:api/register", to: "users#create", as: "api_register"
+  post "/:api/login", to: "users#login", as: "api_login"
   root to: "users#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
