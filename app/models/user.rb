@@ -16,7 +16,7 @@ class User < ApplicationRecord
     role == 'admin'
   end
 
-  def as_json(options={})
-    super(:only => [:name, :photo, :posts_counter])
-  end
+  # def as_json(options={})
+  #   super(:only => [:name, :photo, :posts_counter])
+  # end
 end

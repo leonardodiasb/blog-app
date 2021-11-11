@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
     post.update(comments_counter: comment_count)
   end
 
-  def as_json(options={})
-    super(:only => [:id, :text, :post_id, :author_id])
-  end  
+  # def as_json(options={})
+  #   super(:only => [:id, :text, :post_id, :author_id])
+  # end  
 end

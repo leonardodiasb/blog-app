@@ -1,28 +1,41 @@
 class CommentsController < ApplicationController
+  # before_action :authenticate_user!
+  # http_basic_authenticate_with name:"admin@admin.com", password: "adminadmin"
+
   def new
     @comment = Comment.new
   end
 
   def create
-    if user_signed_in?
-      @current_user = current_user
-      @comment = @current_user.comments.new
-      @comment.text = params[:comment][:text]
-      @comment.author_id = @current_user.id
-      @comment.post_id = params[:post_id]
+    if params[:api].present?
+      comment = Comment.new(comment_params)
       @post = Post.find(params[:post_id])
-      if @comment.save
-        # json_response(@comment, :created)
+      if comment.save
+        render json: {status: 'SUCCESS', message: 'Comment created', data: comment},status: :created
         Comment.update_comments_counter(@post)
-        flash[:notice] = 'Comment created'
-        redirect_to user_post_url(user_id: params[:user_id], id: params[:post_id])
       else
-        flash[:notice] = 'Comment not created'
-        render :new
+        ender json: {status: 'ERROR', message: 'Comment not created', data: comment.errors},status: :unprocessable_entity
       end
     else
-      flash[:error] = 'Please sign up to make a comment.'
-      render :new
+      if user_signed_in?
+        @current_user = current_user
+        @comment = @current_user.comments.new
+        @comment.text = params[:comment][:text]
+        @comment.author_id = @current_user.id
+        @comment.post_id = params[:post_id]
+        @post = Post.find(params[:post_id])
+        if @comment.save
+          Comment.update_comments_counter(@post)
+          flash[:notice] = 'Comment created'
+          redirect_to user_post_url(user_id: params[:user_id], id: params[:post_id])
+        else
+          flash[:notice] = 'Comment not created'
+          render :new
+        end
+      else
+        flash[:error] = 'Please sign up to make a comment.'
+        render :new
+      end
     end
   end
 
@@ -37,5 +50,11 @@ class CommentsController < ApplicationController
       end
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def comment_params
+    params.permit(:text, :author_id, :post_id)
   end
 end
