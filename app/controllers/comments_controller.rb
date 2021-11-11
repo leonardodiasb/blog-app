@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   # before_action :authenticate_user!
   # http_basic_authenticate_with name:"admin@admin.com", password: "adminadmin"
 
-  before_action :authentication, only: [:create]
+  # before_action :authentication
 
   def new
     @comment = Comment.new
@@ -11,7 +11,9 @@ class CommentsController < ApplicationController
   def create
     if params[:api].present?
       comment = Comment.new(comment_params)
-      @post = Post.find(params[:post_id])
+      comment.post_id = params[:id]
+      comment.author_id = params[:user_id]
+      @post = Post.find(params[:id])
       if comment.save
         render json: {status: 'SUCCESS', message: 'Comment created', data: comment},status: :created
         Comment.update_comments_counter(@post)
@@ -57,6 +59,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:text, :author_id, :post_id)
+    params.permit(:text)
   end
 end
