@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
       @comment.post_id = params[:post_id]
       @post = Post.find(params[:post_id])
       if @comment.save
+        # json_response(@comment, :created)
         Comment.update_comments_counter(@post)
         flash[:notice] = 'Comment created'
         redirect_to user_post_url(user_id: params[:user_id], id: params[:post_id])

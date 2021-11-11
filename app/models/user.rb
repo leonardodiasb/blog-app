@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  # , :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
   has_many :posts, foreign_key: 'author_id', class_name: 'Post'
   has_many :comments, foreign_key: 'author_id', class_name: 'Comment'
   has_many :likes, foreign_key: 'author_id', class_name: 'Like'
@@ -15,5 +14,9 @@ class User < ApplicationRecord
 
   def admin?
     role == 'admin'
+  end
+
+  def as_json(options={})
+    super(:only => [:name, :photo, :posts_counter])
   end
 end

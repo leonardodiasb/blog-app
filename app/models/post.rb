@@ -14,4 +14,8 @@ class Post < ApplicationRecord
   def return_recent_comments
     Comment.where(post_id: id).order(created_at: :DESC).limit(5)
   end
+
+  def as_json(options={})
+    super(:only => [:id, :title, :text, :author_id, :comments_counter, :likes_counter])
+  end
 end

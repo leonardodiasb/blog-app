@@ -6,4 +6,8 @@ class Comment < ApplicationRecord
     comment_count = Comment.where(post_id: post.id).count
     post.update(comments_counter: comment_count)
   end
+
+  def as_json(options={})
+    super(:only => [:id, :text, :post_id, :author_id])
+  end  
 end

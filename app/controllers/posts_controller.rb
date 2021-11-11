@@ -4,6 +4,11 @@ class PostsController < ApplicationController
     @users = User.all
     @user = User.find(params[:user_id])
     @posts = User.return_recent_posts(@user).includes(:author)
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   # format.xml  { render :xml => @users }
+    #   format.json { render :json => @posts }
+    end
   end
 
   def show
@@ -12,6 +17,12 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @comments = @post.return_recent_comments.includes(:author)
+    # @all_comments = Comment.where(post_id: params[:id])
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   # format.xml  { render :xml => @users }
+    #   format.json { render :json => @all_comments }
+    end
   end
 
   def new
