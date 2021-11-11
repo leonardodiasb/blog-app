@@ -36,6 +36,7 @@ RSpec.describe 'Login Page', type: :feature do
       fill_in 'Password', with: '123456'
       click_on 'Log in'
       expect(page).to have_content('Signed in successfully.')
+      expect(current_path).to eq(root_path)
     end
   end
 end

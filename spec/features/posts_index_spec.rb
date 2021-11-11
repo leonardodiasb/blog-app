@@ -66,8 +66,11 @@ RSpec.describe 'Post Index Page', type: :feature do
     end
 
     it 'When I click on a post, it redirects me to that post show page.' do
+      test_user = User.find_by(name: 'User 1')
+      test_post1 = Post.find_by(title: 'Post 1')
       find('a', text: 'Post 1').click
       expect(page).to have_content('Post 1')
+      expect(current_path).to eq("/users/#{test_user.id}/posts/#{test_post1.id}")
     end
   end
 end

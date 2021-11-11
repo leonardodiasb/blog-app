@@ -38,10 +38,12 @@ RSpec.describe 'User Index Page', type: :feature do
 
     it "When I click on a user, I am redirected to that user's show page." do
       click_on 'User 1'
+      test_user = User.find_by(name: 'User 1')
       expect(page).to have_content('Bio')
       expect(page).to have_content('Number of posts: 1')
       expect(page).to have_content('Add Post')
       expect(page).to have_content('See All Posts')
+      expect(current_path).to eq("/users/#{test_user.id}")
     end
   end
 end
