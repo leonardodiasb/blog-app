@@ -21,6 +21,11 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @comments = @post.return_recent_comments.includes(:author)
+
+    if params[:api].present?
+      @api_comments_posts = Comment.where("post_id = #{params[:id]}")
+      json_response(@api_comments_posts)
+    end
   end
 
   def new
