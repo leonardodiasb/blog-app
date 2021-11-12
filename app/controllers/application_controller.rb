@@ -1,20 +1,14 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :null_session
 
   before_action :authenticate_user!, :configure_permitted_parameters, if: :devise_controller?
 
-  SECRET = 'randompassword'
+  SECRET = '1ab932c87f8ae07c6de036d06382ad269e2043e690f58f16e9cb5dbd3dc12a99d8aaed6bc22ab80e04e26fdee90e6790f3bacd257914ff596475bf90c0f1fce5'
 
   def authentication
-    # making a request to a secure route, token must be included in the headers
     decode_data = decode_user_data(request.headers["token"])
-    # getting user id from a nested JSON in an array.
     user_data = decode_data[0]["user_id"] unless !decode_data
-    # find a user in the database to be sure token is for a real user
     user = User.find(user_data&.id)
-
-    # The barebone of this is to return true or false, as a middleware
-    # its main purpose is to grant access or return an error to the user
 
     if user
       return true
