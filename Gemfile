@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
+gem 'bcrypt'
 gem 'cancancan', '~> 3.3'
 gem 'devise'
 gem 'devise-jwt'

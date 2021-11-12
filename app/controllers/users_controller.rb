@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize_request, :verify_authenticity_token, only: :create
+
   def index
     @user = current_user if user_signed_in?
     @current_user = current_user
@@ -37,7 +39,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email, :password)
+    params.permit(
+      :name,
+      :email,
+      :password
+    )
   end
 
   def loggin_params
