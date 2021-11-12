@@ -12,24 +12,25 @@ class UsersController < ApplicationController
   end
 
   def create
-    if params[:api].present? and params[:api] = 'api'
-      user = User.new(user_params)
-      if user.save
-        render json: {status: 'SUCCESS', message: 'User created', data: user}, status: :created
-      else
-        render json: {status: 'ERROR', message: 'User not created', data: user.errors}, status: :unprocessable_entity
-      end
+    return unless params[:api].present? and params[:api] == 'api'
+
+    user = User.new(user_params)
+    if user.save
+      render json: { status: 'SUCCESS', message: 'User created', data: user }, status: :created
+    else
+      render json: { status: 'ERROR', message: 'User not created', data: user.errors }, status: :unprocessable_entity
     end
   end
 
   def login
-    if params[:api].present? and params[:api] = 'api'
-      user = (loggin_params)
-      if user.save
-        render json: {status: 'SUCCESS', message: 'User logged in', data: user}, status: :created
-      else
-        render json: {status: 'ERROR', message: 'User not logged in', data: user.errors}, status: :unprocessable_entity
-      end
+    return unless params[:api].present? and params[:api] == 'api'
+
+    user = loggin_params
+    if user.save
+      render json: { status: 'SUCCESS', message: 'User logged in', data: user }, status: :created
+    else
+      render json: { status: 'ERROR', message: 'User not logged in', data: user.errors },
+             status: :unprocessable_entity
     end
   end
 

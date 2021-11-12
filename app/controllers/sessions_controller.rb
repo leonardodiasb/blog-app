@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
       token = encode_user_data({ user_data: user.id })
       render json: { token: token }
     else
-      render json: { message: "invalid credentials" }
+      render json: { message: 'invalid credentials' }
     end
   end
 end
