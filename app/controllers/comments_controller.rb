@@ -4,7 +4,19 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if user_signed_in?
+    if params[:api].present?
+      comment = Comment.new(comment_params)
+      comment.post_id = params[:id]
+      comment.author_id = params[:user_id]
+      @post = Post.find(params[:id])
+      if comment.save
+        render json: { status: 'SUCCESS', message: 'Comment created', data: comment }, status: :created
+        Comment.update_comments_counter(@post)
+      else
+        render json: { status: 'ERROR', message: 'Comment not created', data: comment.errors },
+               status: :unprocessable_entity
+      end
+    elsif user_signed_in?
       @current_user = current_user
       @comment = @current_user.comments.new
       @comment.text = params[:comment][:text]
@@ -36,5 +48,11 @@ class CommentsController < ApplicationController
       end
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def comment_params
+    params.permit(:text)
   end
 end
