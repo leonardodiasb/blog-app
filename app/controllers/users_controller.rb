@@ -24,18 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
-    return unless params[:api].present? and params[:api] == 'api'
-
-    user = loggin_params
-    if user.save
-      render json: { status: 'SUCCESS', message: 'User logged in', data: user }, status: :created
-    else
-      render json: { status: 'ERROR', message: 'User not logged in', data: user.errors },
-             status: :unprocessable_entity
-    end
-  end
-
   private
 
   def user_params
@@ -44,9 +32,5 @@ class UsersController < ApplicationController
       :email,
       :password
     )
-  end
-
-  def loggin_params
-    params.permit(:email, :password)
   end
 end
