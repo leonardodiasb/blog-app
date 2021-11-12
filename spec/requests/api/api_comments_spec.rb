@@ -6,7 +6,7 @@ RSpec.describe 'api/users/:id/posts/:id', type: :request do
       tags 'Comments'
       consumes 'application/json'
       parameter name: 'id', in: :path, type: :integer, description: 'id'
-      parameter name: 'user_id', in: :path, type: :integer, description: 'user_id'      
+      parameter name: 'user_id', in: :path, type: :integer, description: 'user_id'
       parameter name: :comment, in: :body, schema: {
         type: :object,
         properties: {
